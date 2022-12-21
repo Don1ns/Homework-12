@@ -1,5 +1,7 @@
 package task_1;
 
+import java.util.Objects;
+
 public class Book {
     private String title;
     private Author author;
@@ -33,16 +35,15 @@ public class Book {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (this.getClass() != other.getClass()){
-            return false;
-        }
-        Book compareBook = (Book) other;
-        return title.equals(compareBook.title) & author.equals(compareBook.author) & publicationData == compareBook.publicationData;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return publicationData == book.publicationData && Objects.equals(title, book.title) && Objects.equals(author, book.author);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(title, author, publicationData);
+        return Objects.hash(title, author, publicationData);
     }
 }
